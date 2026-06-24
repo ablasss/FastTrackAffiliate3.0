@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Affiliate Fast-Track</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f0f4f8;
+            color: #0a1628;
+            padding: 14px;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 460px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 40px 40px 28px 28px;
+            padding: 24px 20px 32px;
+            box-shadow: 0 25px 60px rgba(10, 22, 40, 0.10), 0 8px 20px rgba(10, 22, 40, 0.04);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- BACKGROUND DECORATION --- */
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bg-orb-1 {
+            top: -100px;
+            right: -80px;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.07) 0%, transparent 70%);
+        }
+        .bg-orb-2 {
+            bottom: 40px;
+            left: -120px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+        }
+        .bg-orb-3 {
+            top: 40%;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(251, 146, 60, 0.08) 0%, transparent 70%);
+        }
+
+        .container>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- ANIMASI SCROLL: MASUK DARI KANAN --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* --- DELAY BERLAPIS UNTUK EFFECT BERTURUT-TURUT --- */
+        .animate-on-scroll:nth-child(1) {
+            transition-delay: 0.05s;
+        }
+        .animate-on-scroll:nth-child(2) {
+            transition-delay: 0.10s;
+        }
+        .animate-on-scroll:nth-child(3) {
+            transition-delay: 0.15s;
+        }
+        .animate-on-scroll:nth-child(4) {
+            transition-delay: 0.20s;
+        }
+        .animate-on-scroll:nth-child(5) {
+            transition-delay: 0.25s;
+        }
+        .animate-on-scroll:nth-child(6) {
+            transition-delay: 0.30s;
+        }
+        .animate-on-scroll:nth-child(7) {
+            transition-delay: 0.35s;
+        }
+        .animate-on-scroll:nth-child(8) {
+            transition-delay: 0.40s;
+        }
+        .animate-on-scroll:nth-child(9) {
+            transition-delay: 0.45s;
+        }
+        .animate-on-scroll:nth-child(10) {
+            transition-delay: 0.50s;
+        }
+        .animate-on-scroll:nth-child(11) {
+            transition-delay: 0.55s;
+        }
+        .animate-on-scroll:nth-child(12) {
+            transition-delay: 0.60s;
+        }
+        .animate-on-scroll:nth-child(13) {
+            transition-delay: 0.65s;
+        }
+        .animate-on-scroll:nth-child(14) {
+            transition-delay: 0.70s;
+        }
+        .animate-on-scroll:nth-child(15) {
+            transition-delay: 0.75s;
+        }
+        .animate-on-scroll:nth-child(16) {
+            transition-delay: 0.80s;
+        }
+        .animate-on-scroll:nth-child(17) {
+            transition-delay: 0.85s;
+        }
+        .animate-on-scroll:nth-child(18) {
+            transition-delay: 0.90s;
+        }
+        .animate-on-scroll:nth-child(19) {
+            transition-delay: 0.95s;
+        }
+        .animate-on-scroll:nth-child(20) {
+            transition-delay: 1.00s;
+        }
+
+        /* --- PRODUCT IMAGE (BOLEH EDIT) --- */
+        .product-image-wrapper {
+            background: linear-gradient(145deg, #f8fafc, #f1f5f9);
+            border-radius: 28px;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 2px solid rgba(239, 68, 68, 0.10);
+            box-shadow: 0 8px 24px rgba(10, 22, 40, 0.04);
+            transition: all 0.3s;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            display: block;
+            background: #e2e8f0;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .edit-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 10px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 5px 16px;
+            border-radius: 60px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: 0.3px;
+        }
+        .edit-hint i {
+            color: #ef4444;
+        }
+        .edit-hint strong {
+            color: #1e293b;
+        }
+
+        /* --- BADGE --- */
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 10px;
+            margin-bottom: 12px;
+        }
+
+        .badge-fire {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.7rem;
+            padding: 5px 16px;
+            border-radius: 60px;
+            letter-spacing: 0.4px;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.30);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .badge-verified {
+            background: #ecfdf5;
+            color: #065f46;
+            font-weight: 700;
+            font-size: 0.7rem;
+            padding: 5px 14px;
+            border-radius: 60px;
+            border: 1px solid #a7f3d0;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: #0a1628;
+            margin-bottom: 4px;
+        }
+
+        .highlight-gradient {
+            background: linear-gradient(145deg, #dc2626, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .subhead {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 4px 0 12px;
+            background: #fef2f2;
+            padding: 8px 16px;
+            border-radius: 40px;
+            display: inline-block;
+            border-left: 5px solid #ef4444;
+        }
+
+        .subhead i {
+            color: #ef4444;
+            margin-right: 8px;
+        }
+
+        .lead-text {
+            font-size: 0.98rem;
+            color: #334155;
+            margin-bottom: 18px;
+            padding: 14px 18px;
+            background: #f8fafc;
+            border-radius: 20px;
+            border: 1px solid #eef2f6;
+            font-weight: 500;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .lead-text i {
+            color: #3b82f6;
+            opacity: 0.6;
+            margin-right: 6px;
+        }
+
+        /* --- SECTION TITLE --- */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 22px 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0a1628;
+        }
+
+        .section-title .icon-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #fef2f2;
+            color: #ef4444;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .section-title .icon-circle.blue {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+        .section-title .icon-circle.green {
+            background: #ecfdf5;
+            color: #16a34a;
+        }
+        .section-title .icon-circle.gold {
+            background: #fef9e7;
+            color: #f59e0b;
+        }
+
+        /* --- CARDS --- */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 12px 0 4px;
+        }
+
+        .card-item {
+            background: #ffffff;
+            padding: 14px 18px;
+            border-radius: 18px;
+            border: 1px solid #eef2f6;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.92rem;
+            transition: 0.15s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .card-item i {
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .card-item.border-red {
+            border-left: 5px solid #ef4444;
+        }
+        .card-item.border-orange {
+            border-left: 5px solid #f97316;
+        }
+        .card-item.border-blue {
+            border-left: 5px solid #3b82f6;
+        }
+        .card-item.border-green {
+            border-left: 5px solid #22c55e;
+        }
+        .card-item.border-purple {
+            border-left: 5px solid #8b5cf6;
+        }
+
+        .card-item .card-icon-red {
+            color: #ef4444;
+        }
+        .card-item .card-icon-orange {
+            color: #f97316;
+        }
+        .card-item .card-icon-blue {
+            color: #3b82f6;
+        }
+        .card-item .card-icon-green {
+            color: #22c55e;
+        }
+        .card-item .card-icon-purple {
+            color: #8b5cf6;
+        }
+
+        /* --- LIST CHECK --- */
+        .list-check {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 4px;
+        }
+
+        .list-check li {
+            padding: 10px 0 10px 34px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%2322c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat;
+            background-size: 22px;
+            border-bottom: 1px solid #f1f5f9;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .list-check li:last-child {
+            border-bottom: none;
+        }
+
+        /* --- TESTIMONIAL BOX --- */
+        .testimonial-box {
+            background: linear-gradient(145deg, #fef9e7, #fef3c7);
+            padding: 20px 20px;
+            border-radius: 24px;
+            margin: 20px 0;
+            border: 1px solid #fde68a;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.08);
+        }
+
+        .testimonial-box strong {
+            display: block;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+            color: #0a1628;
+        }
+
+        .testimonial-box .tag-success {
+            background: #16a34a;
+            color: white;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            display: inline-block;
+        }
+
+        /* --- EXPERIENCE BOX --- */
+        .experience-box {
+            background: #eff6ff;
+            padding: 16px 18px;
+            border-radius: 20px;
+            margin: 14px 0;
+            border-left: 5px solid #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.06);
+        }
+
+        .experience-box .highlight-blue {
+            background: #2563eb;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        /* --- VISUALISASI --- */
+        .vision-box {
+            background: linear-gradient(145deg, #f0fdf4, #dcfce7);
+            padding: 18px 20px;
+            border-radius: 24px;
+            margin: 18px 0;
+            border: 1px solid #86efac;
+        }
+
+        .vision-box strong {
+            font-size: 1.05rem;
+            color: #0a1628;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .vision-chip {
+            display: inline-block;
+            background: #16a34a;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            margin: 3px 4px 3px 0;
+        }
+
+        /* --- PRICE CARD --- */
+        .price-card {
+            background: linear-gradient(145deg, #0f1a2e, #0a1628);
+            color: white;
+            padding: 28px 22px;
+            border-radius: 32px;
+            text-align: center;
+            margin: 24px 0 16px;
+            box-shadow: 0 20px 50px rgba(10, 22, 40, 0.30);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .price-card::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: -40px;
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, rgba(251, 146, 60, 0.10) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .price-card .price-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            font-weight: 600;
+        }
+
+        .price-card .price-tag {
+            font-size: 3.4rem;
+            font-weight: 900;
+            color: #facc15;
+            letter-spacing: -2px;
+            line-height: 1;
+            text-shadow: 0 4px 20px rgba(250, 204, 21, 0.20);
+        }
+
+        .price-card .price-sub {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin: 4px 0 16px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(145deg, #ef4444, #dc2626);
+            color: white;
+            font-weight: 800;
+            font-size: 1.1rem;
+            padding: 16px 40px;
+            border-radius: 60px;
+            text-decoration: none;
+            border: none;
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.35);
+            transition: 0.15s;
+            width: 100%;
+            max-width: 300px;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.96);
+        }
+
+        .btn-primary i {
+            margin-right: 10px;
+        }
+
+        /* --- BONUS CHIPS --- */
+        .bonus-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 12px 0 6px;
+        }
+
+        .bonus-chips span {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            color: #065f46;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* --- FAQ --- */
+        .faq-item {
+            background: #f8fafc;
+            padding: 14px 18px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            border: 1px solid #eef2f6;
+            transition: 0.1s;
+        }
+
+        .faq-item strong {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.98rem;
+            color: #0a1628;
+            font-weight: 700;
+        }
+
+        .faq-item strong i {
+            color: #ef4444;
+            font-size: 1rem;
+            width: 20px;
+        }
+
+        .faq-item p {
+            color: #475569;
+            margin-top: 4px;
+            padding-left: 30px;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        /* --- CTA BOTTOM --- */
+        .cta-bottom {
+            background: linear-gradient(145deg, #fef2f2, #fecaca);
+            border-radius: 28px;
+            padding: 24px 18px;
+            text-align: center;
+            margin-top: 24px;
+            border: 1px solid #fca5a5;
+        }
+
+        .cta-bottom h3 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #0a1628;
+        }
+
+        .cta-bottom h3 i {
+            color: #ef4444;
+        }
+
+        .cta-bottom p {
+            margin: 6px 0 16px;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: linear-gradient(145deg, #0f1a2e, #0a1628);
+            color: white;
+            font-weight: 800;
+            padding: 14px 36px;
+            border-radius: 60px;
+            text-decoration: none;
+            border: none;
+            box-shadow: 0 10px 30px rgba(10, 22, 40, 0.25);
+            width: 100%;
+            max-width: 280px;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.96);
+        }
+
+        .btn-secondary i {
+            margin-right: 8px;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 0.65rem;
+            color: #94a3b8;
+            padding-top: 14px;
+            border-top: 1px solid #e9edf2;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 400px) {
+            .container {
+                padding: 16px 14px;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            .price-card .price-tag {
+                font-size: 2.8rem;
+            }
+            .card-item {
+                font-size: 0.85rem;
+                padding: 12px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- DECORATION -->
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+
+        <!-- ============================================================ -->
+        <!-- SEMUA ELEMEN DI BAWAH INI AKAN MUNCUL DARI KANAN SEMASA SCROLL -->
+        <!-- ============================================================ -->
+
+        <!-- ===== GAMBAR PRODUK (EDIT DI SINI) ===== -->
+        <div class="product-image-wrapper animate-on-scroll">
+            <!-- GANTIKAN src dengan gambar produk anda -->
+            <img src="https://via.placeholder.com/600x338/0a1628/facc15?text=Gambar+Ebook+Anda" alt="Ebook Affiliate Fast-Track" id="productImage" />
+            <div class="edit-hint">
+                <i class="fas fa-pen"></i> Ganti gambar — edit <strong>src</strong> dalam tag img
+            </div>
+        </div>
+
+        <!-- ===== BADGE ===== -->
+        <div class="badge-group animate-on-scroll">
+            <span class="badge-fire"><i class="fas fa-fire"></i> 5000+ pembeli</span>
+            <span class="badge-verified"><i class="fas fa-check-circle"></i> 100% beginner friendly</span>
+        </div>
+
+        <!-- ===== TAJUK ===== -->
+        <h1 class="animate-on-scroll">MASIH STUCK <br><span class="highlight-gradient">BAWAH 1K</span> FOLLOWERS?</h1>
+        <div class="subhead animate-on-scroll"><i class="fas fa-bolt"></i> Tak perlu tunggu viral untuk unlock Beg Kuning</div>
+
+        <div class="lead-text animate-on-scroll">
+            <i class="fas fa-quote-left"></i> Belajar pendekatan yang bantu saya capai 1,000 followers lebih cepat — walaupun pernah kena banned dan mula semula dari kosong.
+        </div>
+
+        <!-- ===== MASALAH ===== -->
+        <div class="section-title animate-on-scroll">
+            <span class="icon-circle"><i class="fas fa-exclamation"></i></span> Ramai tersangkut di sini:
+        </div>
+        <div class="card-grid animate-on-scroll">
+            <div class="card-item border-red"><i class="fas fa-user-slash card-icon-red"></i> Followers susah naik</div>
+            <div class="card-item border-orange"><i class="fas fa-eye-slash card-icon-orange"></i> Konsisten post tapi view rendah</div>
+            <div class="card-item border-blue"><i class="fas fa-lock card-icon-blue"></i> Tak cukup 1K untuk beg kuning</div>
+            <div class="card-item border-purple"><i class="fas fa-face-frown card-icon-purple"></i> Penat buat content, hasil tak nampak</div>
+            <div class="card-item border-green"><i class="fas fa-camera card-icon-green"></i> Malu tunjuk muka</div>
+            <div class="card-item border-red"><i class="fas fa-copy card-icon-red"></i> Cuba formula orang lain... tak menjadi</div>
+        </div>
+        <p class="animate-on-scroll" style="font-weight:800; font-size:1.05rem; text-align:center; margin:12px 0 2px; color:#0a1628;">Dan akhirnya... <span style="color:#dc2626;">ramai berhenti separuh jalan.</span></p>
+
+        <!-- ===== PENGALAMAN ===== -->
+        <div class="section-title animate-on-scroll" style="margin-top:18px;">
+            <span class="icon-circle blue"><i class="fas fa-user"></i></span> Saya pernah ada di situasi itu.
+        </div>
+        <p class="animate-on-scroll" style="margin-bottom:6px; font-weight:500;">Saya ambil hampir <strong>6 bulan</strong> untuk 1K pertama. Cuba pelbagai cara:</p>
+        <ul class="list-check animate-on-scroll">
+            <li>Teknik 3-1-3, SEO TikTok, Hashtag</li>
+            <li>Jam posting, Follow-for-follow</li>
+        </ul>
+        <p class="animate-on-scroll" style="margin-top:6px; font-weight:500;">Ada yang menjadi, tapi <strong style="color:#dc2626;">terlalu lambat</strong>.</p>
+
+        <div class="experience-box animate-on-scroll">
+            <i class="fas fa-rotate-left" style="color:#2563eb; margin-right:6px;"></i> Lepas akaun affiliate kena banned, saya mula semula dari kosong.
+            <div style="margin-top:10px;">
+                <span class="highlight-blue"><i class="fas fa-check"></i> Akaun baru pertama → 1K dalam &lt; 1 bulan</span>
+                <span class="highlight-blue" style="background:#1d4ed8; margin-left:4px;"><i class="fas fa-check"></i> Akaun seterusnya → 1K dalam beberapa hari</span>
+            </div>
+        </div>
+
+        <!-- ===== ISI EBOOK ===== -->
+        <div class="section-title animate-on-scroll">
+            <span class="icon-circle gold"><i class="fas fa-book-open"></i></span> Dalam ebook ini anda akan belajar:
+        </div>
+        <ul class="list-check animate-on-scroll">
+            <li>Cara percepatkan 1K followers pertama</li>
+            <li>Pendekatan sesuai untuk affiliator baru</li>
+            <li>Setup "Boost Account" dengan betul</li>
+            <li>Elak buang duit pada cara tidak efisien</li>
+            <li>Fikir seperti affiliator serius</li>
+            <li>Cara kira ROI supaya modal tidak burn</li>
+        </ul>
+
+        <!-- ===== SESUAI UNTUK ===== -->
+        <div class="section-title animate-on-scroll">
+            <span class="icon-circle green"><i class="fas fa-check-circle"></i></span> Sesuai untuk anda jika:
+        </div>
+        <div class="card-grid animate-on-scroll">
+            <div class="card-item border-green"><i class="fas fa-clock card-icon-green"></i> Sudah lama cuba tapi followers susah naik</div>
+            <div class="card-item border-blue"><i class="fas fa-key card-icon-blue"></i> Mahu buka beg kuning lebih cepat</div>
+            <div class="card-item border-orange"><i class="fas fa-coins card-icon-orange"></i> Mahu affiliate sebagai side income</div>
+            <div class="card-item border-purple"><i class="fas fa-compass card-icon-purple"></i> Tidak tahu langkah pertama</div>
+            <div class="card-item border-red"><i class="fas fa-sitemap card-icon-red"></i> Mahu sistem yang jelas & tersusun</div>
+        </div>
+
+        <!-- ===== KENAPA BERBEZA ===== -->
+        <div class="testimonial-box animate-on-scroll">
+            <strong><i class="fas fa-star" style="color:#f59e0b;"></i> Apa yang membuat ebook ini berbeza?</strong>
+            <p style="font-weight:500;">Bukan teori kosong. Ditulis berdasarkan:</p>
+            <ul class="list-check" style="margin:4px 0 0;">
+                <li>pengalaman sebenar, trial & error</li>
+                <li>akaun kena banned, kegagalan</li>
+                <li>dan comeback sebenar dalam dunia affiliate TikTok</li>
+            </ul>
+            <p style="margin-top:10px; font-style:italic; background:white; padding:6px 16px; border-radius:40px; display:inline-block; font-weight:700; font-size:0.85rem; border:1px solid #fde68a;">Tiada janji 'kaya overnight' — hanya pendekatan praktikal.</p>
+        </div>
+
+        <!-- ===== BAYANGKAN ===== -->
+        <div class="vision-box animate-on-scroll">
+            <strong><i class="fas fa-eye" style="color:#16a34a;"></i> Bayangkan jika...</strong>
+            <p style="font-weight:500; margin-top:4px;">Sebulan dari sekarang, anda sudah:</p>
+            <div style="margin:6px 0;">
+                <span class="vision-chip"><i class="fas fa-check"></i> Beg kuning sendiri</span>
+                <span class="vision-chip"><i class="fas fa-check"></i> Upload video affiliate</span>
+                <span class="vision-chip"><i class="fas fa-check"></i> Dapat sale pertama</span>
+                <span class="vision-chip"><i class="fas fa-check"></i> Tidak lagi stuck bawah 1K</span>
+            </div>
+            <p style="font-weight:800; margin-top:6px; font-size:1.05rem;">Semua bermula dengan satu langkah.</p>
+        </div>
+
+        <!-- ===== PRODUK + HARGA ===== -->
+        <div class="animate-on-scroll" style="text-align:center; margin:16px 0 4px;">
+            <span style="font-size:2.4rem; display:block;">📘</span>
+            <h2 style="font-size:1.6rem; font-weight:900; letter-spacing:-0.5px; color:#0a1628;">Affiliate Fast-Track</h2>
+            <p style="font-weight:800; color:#dc2626; font-size:1.1rem;">Sistem Pecah Tembok 1,000 Followers TikTok</p>
+            <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:6px 14px; margin:10px 0; font-weight:600; font-size:0.85rem; color:#475569;">
+                <span>🔥 Ebook digital</span>
+                <span>📖 Mudah dibaca</span>
+                <span>⚡ Straight to the point</span>
+                <span>🌱 Beginner</span>
+            </div>
+        </div>
+
+        <div class="price-card animate-on-scroll">
+            <div class="price-label">HARGA</div>
+            <div class="price-tag">RM27.00</div>
+            <div class="price-sub">sekali bayar, milik selamanya</div>
+            <a href="#" class="btn-primary"><i class="fas fa-cart-plus"></i> Dapatkan Sekarang</a>
+        </div>
+
+        <!-- BONUS -->
+        <div class="bonus-chips animate-on-scroll">
+            <span><i class="fas fa-file-invoice"></i> Template ROI</span>
+            <span><i class="fas fa-brain"></i> Panduan Mindset</span>
+            <span><i class="fas fa-layer-group"></i> Struktur Content</span>
+        </div>
+
+        <!-- ===== FAQ ===== -->
+        <div class="section-title animate-on-scroll" style="margin-top:24px;">
+            <span class="icon-circle blue"><i class="fas fa-circle-question"></i></span> Soalan Lazim
+        </div>
+        <div class="faq-item animate-on-scroll">
+            <strong><i class="fas fa-seedling"></i> "Saya baru mula, sesuai ke?"</strong>
+            <p>Ya. Ebook ini memang ditulis untuk beginner yang masih struggle capai 1K followers.</p>
+        </div>
+        <div class="faq-item animate-on-scroll">
+            <strong><i class="fas fa-user-secret"></i> "Perlu tunjuk muka?"</strong>
+            <p>Tidak semestinya. Dalam ebook juga disentuh tentang situasi affiliator yang kurang selesa menunjukkan wajah.</p>
+        </div>
+        <div class="faq-item animate-on-scroll">
+            <strong><i class="fas fa-hourglass-half"></i> "Berapa lama boleh capai 1K?"</strong>
+            <p>Bergantung pada execution. Tetapi pendekatan dalam ebook ini direka untuk mempercepatkan proses growth.</p>
+        </div>
+        <div class="faq-item animate-on-scroll">
+            <strong><i class="fas fa-book"></i> "Ini ebook atau kelas?"</strong>
+            <p>Ini adalah ebook digital yang boleh dibaca terus selepas pembelian.</p>
+        </div>
+
+        <!-- ===== CTA BOTTOM ===== -->
+        <div class="cta-bottom animate-on-scroll">
+            <h3><i class="fas fa-bell"></i> Jangan tunggu sampai akaun orang lain mula jana sale.</h3>
+            <p>Sedangkan anda masih stuck fikir: <em>"Macam mana nak cukupkan 1K followers?"</em></p>
+            <a href="#" class="btn-secondary"><i class="fas fa-rocket"></i> Mulakan Sekarang</a>
+        </div>
+
+        <div class="footer animate-on-scroll">
+            © 2026 Affiliate Fast-Track • Landing page untuk pecah tembok 1K followers
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT UNTUK SCROLL ANIMATION ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // Pilih semua elemen yang perlu dianimasikan
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+            // Gunakan Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Tambah class 'visible' untuk trigger animation
+                        entry.target.classList.add('visible');
+                        // (Optional) Berhenti observe selepas muncul untuk prestasi
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15, // 15% elemen kelihatan baru trigger
+                rootMargin: '0px 0px -40px 0px' // Trigger lebih awal sedikit
+            });
+
+            // Mula observe setiap elemen
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Juga trigger untuk elemen yang sudah kelihatan pada muat turun
+            // (contoh: elemen pertama di atas)
+            setTimeout(() => {
+                animatedElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                    if (rect.top < windowHeight - 100) {
+                        el.classList.add('visible');
+                    }
+                });
+            }, 200);
+
+        })();
+    </script>
+
+</body>
+</html>
