@@ -168,12 +168,14 @@
             }
         }
 
-        /* ===== PRODUCT IMAGE ===== */
+        /* ===== PRODUCT IMAGE - OPTIMIZED ===== */
         .product-image-wrapper {
             border-radius: 20px;
             margin-bottom: 14px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(10, 22, 40, 0.06);
+            background: #f8fafc;
+            position: relative;
         }
 
         .product-image-wrapper img {
@@ -181,7 +183,17 @@
             height: auto;
             display: block;
             aspect-ratio: 16 / 10;
-            object-fit: cover;
+            object-fit: contain;
+            background: #ffffff;
+            image-rendering: auto;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            transition: transform 0.3s ease;
+        }
+
+        .product-image-wrapper img:hover {
+            transform: scale(1.01);
         }
 
         /* ===== BADGE ===== */
@@ -662,6 +674,13 @@
             .btn-pulse { font-size: 0.9rem; padding: 10px 24px; }
             .btn-pulse-secondary { font-size: 0.8rem; padding: 8px 20px; }
         }
+
+        /* ===== OPTIMIZATION FOR HIGH-DPI SCREENS ===== */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .product-image-wrapper img {
+                image-rendering: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -692,9 +711,15 @@
     <!-- ===== MAIN CONTENT ===== -->
     <div class="container">
 
-        <!-- ===== GAMBAR PRODUK ===== -->
+        <!-- ===== GAMBAR PRODUK - OPTIMIZED ===== -->
         <div class="product-image-wrapper animate-on-scroll">
-            <img src="https://ibb.co/Tx4bcCQz" alt="Affiliate Fast-Track Ebook" />
+            <img 
+                src="https://i.ibb.co/k2cp5VkV/Affiliate-Fast-Track1.png" 
+                alt="Affiliate Fast-Track Ebook" 
+                loading="lazy"
+                width="800"
+                height="500"
+            />
         </div>
 
         <!-- ===== BADGE ===== -->
@@ -774,8 +799,7 @@
             <div class="price-original">Harga asal RM47</div>
             <div class="price-current">RM27</div>
             <div class="price-note">⬇️ Harga promosi — <strong style="color:#facc15;">jimat RM20</strong></div>
-            <!-- BUTANG DENGAN ANIMASI BERDENYUT -->
-            <a href="#" class="btn-pulse"><i class="fas fa-cart-plus"></i> Dapatkan Sekarang</a>
+            <a href="https://wa.me/60178553965?text=Hai%20saya%20nak%20dapatkan%20ebook%20Affiliate%20Fast-Track.%20Boleh%20bagi%20info%20cara%20beli%20dan%20harga%20terkini%3F" class="btn-pulse"><i class="fas fa-cart-plus"></i> Dapatkan Sekarang</a>
         </div>
 
         <!-- BONUS -->
@@ -806,8 +830,7 @@
         <div class="cta-bottom animate-on-scroll">
             <h3><i class="fas fa-bell"></i> Jangan tunggu sampai akaun orang lain mula jana sale.</h3>
             <p>Anda masih stuck fikir: <em>"Macam mana nak cukupkan 1K?"</em></p>
-            <!-- BUTANG KEDUA DENGAN ANIMASI BERDENYUT (berbeza sedikit kelajuan) -->
-            <a href="#" class="btn-pulse-secondary"><i class="fas fa-rocket"></i> Mulakan Sekarang</a>
+            <a href="https://wa.me/60178553965?text=Hai%20saya%20nak%20dapatkan%20ebook%20Affiliate%20Fast-Track.%20Boleh%20bagi%20info%20cara%20beli%20dan%20harga%20terkini%3F" class="btn-pulse-secondary"><i class="fas fa-rocket"></i> Mulakan Sekarang</a>
         </div>
 
         <div class="footer animate-on-scroll">
